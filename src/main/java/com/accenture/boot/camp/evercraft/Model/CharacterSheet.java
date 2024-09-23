@@ -1,4 +1,4 @@
-package com.accenture.boot.camp.evercraft;
+package com.accenture.boot.camp.evercraft.Model;
 
 
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class CharacterSheet {
 
 
 
-    public CharacterSheet(String name,String alignment) {
+    public CharacterSheet(String name, String alignment) {
         setName(name);
         setAlignment(alignment);
         setArmourClass(10);

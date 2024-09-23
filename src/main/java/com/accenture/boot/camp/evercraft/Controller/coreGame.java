@@ -1,4 +1,4 @@
-package com.accenture.boot.camp.evercraft;
+package com.accenture.boot.camp.evercraft.Controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

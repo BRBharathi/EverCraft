@@ -1,5 +1,7 @@
 package com.accenture.boot.camp.evercraft;
 
+import com.accenture.boot.camp.evercraft.Model.CharacterSheet;
+import com.accenture.boot.camp.evercraft.Model.TargetAction;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +19,16 @@ class EvercraftApplicationTests {
 
      @Autowired
 	private MockMvc mvc;
-public CharacterSheet newCharacter=new CharacterSheet("Bharathi","Good");
+   private CharacterSheet newCharacter;
+   private CharacterSheet targetCharacter;
+   private TargetAction attack;
+
+	 public void beforeEach()
+	 {
+		   newCharacter=new CharacterSheet("Bharathi","Good");
+           targetCharacter=new CharacterSheet("Demon","Evil");
+	 }
+
 
 	@Test
 	void person_endpoint_if_name_is_provide() throws Exception {
@@ -80,26 +91,22 @@ public CharacterSheet newCharacter=new CharacterSheet("Bharathi","Good");
 		Assertions.assertEquals(validNumber,newCharacter.dieRoll(validNumber));
 		Assertions.assertEquals(-1,newCharacter.dieRoll(inValidNumber));
 	}
-  /*  @Test
-	void character_combat() throws Exception{
-
-		//given a character
-		//when i call the instance of the character
-		//then instance should posses the correct default attributes
-		int expectedArmourClass=10;
-		int expectedHitPoints=5;
-		Assertions.assertEquals(expectedArmourClass,newCharacter.getArmourClass());
-		Assertions.assertEquals(expectedHitPoints,newCharacter.getHitPoints());
-	}
 
 	@Test
-	void characterTest()throws Exception{
-
-		String expectedName="Bharat";
-		//CharacterSheet character=new CharacterSheet(expectedName);
-
-		Assertions.assertEquals("Bharat",expectedName);
+	@DisplayName("character is able to land successfull")
+	void character_meets_or_beets_target_character_armor_class()throws Exception
+	{
 
 
-	}*/
+		//given a character is performing a attack
+		//when the die is rolled to attack a target
+		//if the die roll number is greater or equal to target character armour class
+        //then the attack is successfull
+       int roll=newCharacter.dieRoll(10);
+		attack=new TargetAction(newCharacter,targetCharacter);
+
+		Assertions.assertTrue(attack.isSuccessfull(roll));
+	}
+
+
 }
